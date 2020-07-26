@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en' xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Temperature</title>
+</head>
+<body>
+
+<table>
+  <tr>
+  <th>Temperature ID</th>
+  <th>Temperature</th>
+  <th>Elder ID</th>
+  <th>Time</th>
+  </tr>
+    <tr th:each="temp : ${temps}">
+      <td th:text="${temp.getTemperatureID()}">Temperature ID</td>
+      <td th:text="${temp.getTemperature()}">Temperature</td>
+      <td th:text="${temp.getElderID()}">Elder ID</td>
+      <td th:text="${temp.getTimestamp()}">Time</td>
+    </tr>
+</table>
+
+</body>
+</html>
