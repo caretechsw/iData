@@ -13,7 +13,7 @@ import hk.com.caretech.clive.iData.model.Elder;
 public interface ElderRepository extends JpaRepository<Elder, Integer> {
 	
 	
-	//**Methods annotated @Query only accept "String" type attribute**
+	//**Methods annotated with @Query only accept "String" type attribute**
 	
 	@Query(value = "select * from Elder where elder.id = ?1" , nativeQuery = true)
 	List<Elder> getElderById(String id);
@@ -25,10 +25,11 @@ public interface ElderRepository extends JpaRepository<Elder, Integer> {
 	List<Elder> getElderByBedNo(String bed_no);
 
 	
+	
 
 	@Query(value = "insert into elder(name, bed_no) values (:name, :bed_no)",
 	  nativeQuery = true)
-	void addElder(@Param("name")String name, @Param("bed_no") int bed_no);
+	void addElder(String name,int bed_no);
 	
 	
 //	@Modifying

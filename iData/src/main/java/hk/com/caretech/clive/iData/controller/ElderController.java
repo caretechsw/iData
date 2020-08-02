@@ -3,9 +3,13 @@ package hk.com.caretech.clive.iData.controller;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,12 +26,20 @@ public class ElderController {
 	@Autowired
     private ElderRepository elderRepository;
 	
+	EntityManager entityManager;
+	
 	Logger logger = LoggerFactory.getLogger("ElderController");
 	
 	
+	@GetMapping("/")
+	public String testConnect(){
+		return "connected";	
+	}
+	
 	@GetMapping("/elder")
 	public List<Elder> findAll(){
-		return elderRepository.findAll();		
+		return elderRepository.findAll();	
+		
 	}
 	
 //	//Return HTML page
@@ -50,15 +62,17 @@ public class ElderController {
 		return elderRepository.getElderByName(name);
 	}
 	
-	@GetMapping("/elder/bedno")
-	public List<Elder> getElderByBedNo(@RequestParam String bedno) {
-		return elderRepository.getElderByBedNo(bedno);
+	@GetMapping("/elder/bed_no")
+	public List<Elder> getElderByBedNo(@RequestParam String bed_no) {
+		return elderRepository.getElderByBedNo(bed_no);
 	}
 	
-	
-	@PostMapping(value = "/elder/add")
-	public void addElder(@RequestParam String name, @RequestParam int bedno){
-		elderRepository.addElder(name, bedno);
+	@PostMapping("/elder/add")
+	public void addElder(@RequestParam String name,@RequestParam int bed_no){
+		elderRepository.addElder(name, bed_no);
+//		entityManager.createNativeQuery("insert into elder(name, bed_no) values (:name, :bed_no)")
+//		.setParameter(1, elder.getName())
+//		.setParameter(2, elder.getBed_no()).executeUpdate();
 		/*URI path = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(elder.getId()).toUri();
 		
