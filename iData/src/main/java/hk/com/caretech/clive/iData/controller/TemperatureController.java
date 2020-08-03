@@ -88,18 +88,18 @@ public class TemperatureController {
 //	public void addTemptest(@RequestParam String temperature,@RequestParam String elder_id) {
 //		temperatureRepository.addTemp(temperature, elder_id);
 //		}
-	
- public void teste(String temperature, String elder_id) {
-		
-	    String queryString = "insert into temperature(temperature, elder_id) values (:temperature, :elder_id)";
-	    Query query = sessionFactory.getCurrentSession().createQuery(queryString);
-	    query.setParameter("temperature", temperature);
-	    query.setParameterList("elder_id", elder_id);
-	    query.executeUpdate();
-//	    TypedQuery<Temperature> query = em.createQuery(
-//	    		"insert into temperature(temperature, elder_id) values (:temperature, :elder_id)", Temperature.class);
-//	    return query.setParameter("temperature", temperature).setParameter("elder_id", elder_id).executeUpdate();
-	  }
+//	
+// public void teste(String temperature, String elder_id) {
+//		
+//	    String queryString = "insert into temperature(temperature, elder_id) values (:temperature, :elder_id)";
+//	    Query query = sessionFactory.getCurrentSession().createQuery(queryString);
+//	    query.setParameter("temperature", temperature);
+//	    query.setParameterList("elder_id", elder_id);
+//	    query.executeUpdate();
+////	    TypedQuery<Temperature> query = em.createQuery(
+////	    		"insert into temperature(temperature, elder_id) values (:temperature, :elder_id)", Temperature.class);
+////	    return query.setParameter("temperature", temperature).setParameter("elder_id", elder_id).executeUpdate();
+//	  }
 	
 //    public void d (Elder elder) {
 // 
