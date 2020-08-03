@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 //import javax.persistence.EntityManagerFactory;
 //import javax.persistence.Persistence;
 //
@@ -12,7 +16,6 @@ import javax.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +34,11 @@ public class TemperatureController {
 	
 	@Autowired
     private TemperatureRepository temperatureRepository;
+	
+	private static SessionFactory sessionFactory = null;
+	
+	@PersistenceContext
+	public EntityManager em;
 
 	
 	Logger logger = LoggerFactory.getLogger("TemperatureController");
@@ -76,20 +84,22 @@ public class TemperatureController {
 	}
 	
 	
-	@PostMapping("/addtemptest")
-	public void addTemptest(@RequestParam String temperature,@RequestParam String elder_id) {
-		temperatureRepository.addTemp( temperature, elder_id);
-		}
+//	@PostMapping("/addtemptest")
+//	public void addTemptest(@RequestParam String temperature,@RequestParam String elder_id) {
+//		temperatureRepository.addTemp(temperature, elder_id);
+//		}
 	
-	@PersistenceContext
-	public EntityManager em;
-
-	public Temperature test(EntityManager em, String elder_id, String elder_id) {
-	    TypedQuery<Temperature> query = em.createQuery(
-	    		"insert into temperature(temperature, elder_id) values (:temperature, :elder_id)", Temperature.class);
-	    return query.setParameter("temperature", temperature).setParameter("elder_id", elder_id).
-	    		getSingleResult();
-	  } 
+ public void teste(String temperature, String elder_id) {
+		
+	    String queryString = "insert into temperature(temperature, elder_id) values (:temperature, :elder_id)";
+	    Query query = sessionFactory.getCurrentSession().createQuery(queryString);
+	    query.setParameter("temperature", temperature);
+	    query.setParameterList("elder_id", elder_id);
+	    query.executeUpdate();
+//	    TypedQuery<Temperature> query = em.createQuery(
+//	    		"insert into temperature(temperature, elder_id) values (:temperature, :elder_id)", Temperature.class);
+//	    return query.setParameter("temperature", temperature).setParameter("elder_id", elder_id).executeUpdate();
+	  }
 	
 //    public void d (Elder elder) {
 // 
@@ -136,4 +146,4 @@ public class TemperatureController {
 //		temperatureRepository.deleteById(temid);
 //	}
 }
-}
+
