@@ -11,6 +11,9 @@ import javax.persistence.Id;
 @Entity
 public class Temperature {
 	
+	public Temperature() {
+		super();
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int temperature_id;

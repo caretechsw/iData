@@ -9,6 +9,9 @@ import javax.persistence.Id;
 @Entity
 public class Elder {
 	
+	public Elder() {
+		super();
+	}
 	public Elder(int id, String name, int bed_no) {
 		super();
 		this.id = id;

@@ -26,18 +26,16 @@ public interface ElderRepository extends JpaRepository<Elder, Integer> {
 
 	
 	
-
-<<<<<<< HEAD
-	@Query(value = "insert into elder(name, bed_no) values (:name, :bed_no)",
-	  nativeQuery = true)
+	@Query
+	(value = "insert into elder(name, bed_no) values (:name, :bed_no)", nativeQuery = true)
 	void addElder(String name,int bed_no);
 	
-=======
+
 //	@Query(value = "insert into elder(name, bed_no) values (:name, :bed_no)",
 //	  nativeQuery = true)
 //	void addElder(String name,String bed_no);
 //	
->>>>>>> refs/remotes/origin/brand1
+
 	
 //	@Modifying
 //	@Query
