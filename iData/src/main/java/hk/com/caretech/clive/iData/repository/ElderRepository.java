@@ -16,21 +16,28 @@ public interface ElderRepository extends JpaRepository<Elder, Integer> {
 	//**Methods annotated with @Query only accept "String" type attribute**
 	
 	@Query(value = "select * from Elder where elder.id = ?1" , nativeQuery = true)
-	List<Elder> getElderById(String id);
+	List<Elder> getById(String id);
 	
 	@Query(value = "select * from Elder where elder.name LIKE %?1%" , nativeQuery = true)
-	List<Elder> getElderByName(String name);
+	List<Elder> getByName(String name);
 	
 	@Query(value = "select * from Elder where elder.bed_no = ?1" , nativeQuery = true)
-	List<Elder> getElderByBedNo(String bed_no);
+	List<Elder> getByBedNo(String bed_no);
 
 	
 	
 
+<<<<<<< HEAD
 	@Query(value = "insert into elder(name, bed_no) values (:name, :bed_no)",
 	  nativeQuery = true)
 	void addElder(String name,int bed_no);
 	
+=======
+//	@Query(value = "insert into elder(name, bed_no) values (:name, :bed_no)",
+//	  nativeQuery = true)
+//	void addElder(String name,String bed_no);
+//	
+>>>>>>> refs/remotes/origin/brand1
 	
 //	@Modifying
 //	@Query

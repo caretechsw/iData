@@ -9,6 +9,12 @@ import javax.persistence.Id;
 @Entity
 public class Elder {
 	
+	public Elder(int id, String name, int bed_no) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.bed_no = bed_no;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

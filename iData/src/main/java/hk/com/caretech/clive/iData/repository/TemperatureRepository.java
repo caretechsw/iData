@@ -15,12 +15,16 @@ public interface TemperatureRepository extends JpaRepository<Temperature, Intege
 	//**Methods annotated with @Query only accept "String" type attribute**
 	
 	@Query(value = "select * from Temperature where temperature.elder_id = ?1" , nativeQuery = true)
+<<<<<<< HEAD
 	List<Temperature> findByElderID(String elder_id);
+=======
+	List<Temperature> getByElderId(String elder_id);
+>>>>>>> refs/remotes/origin/brand1
 	
 	
-	@Modifying
-	@Query(value = "insert into temperature(temperature, elder_id) values (:temperature, :elder)",
+
+	@Query(value = "insert into temperature(temperature, elder_id) values (:temperature, :elder_id)",
 	  nativeQuery = true)
-	void addTemp(@Param("temperature")float temperature, @Param("elder") int elder);
+	void addTemp(String temperature, String elder_id);
 
 }
