@@ -19,6 +19,13 @@ public class Temperature {
 	private Timestamp timestamp;
 	
 	
+	public Temperature(int temperature_id, float temperature, int elder_ID, Timestamp timestamp) {
+		super();
+		this.temperature_id = temperature_id;
+		this.temperature = temperature;
+		this.elder_ID = elder_ID;
+		this.timestamp = timestamp;}
+	
 //	@ManyToOne
 //	@JoinColumn(name = "elderid")
 //	private Elder elder;
