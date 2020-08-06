@@ -5,12 +5,15 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import hk.com.caretech.clive.iData.model.Elder;
 import hk.com.caretech.clive.iData.model.Temperature;
 
-public interface TemperatureRepository extends JpaRepository<Temperature, Integer> {
+@Repository
+public interface TemperatureRepository extends CrudRepository<Temperature, Integer> {
 	
 	//**Methods annotated with @Query only accept "String" type attribute**
 	
@@ -19,8 +22,8 @@ public interface TemperatureRepository extends JpaRepository<Temperature, Intege
 
 	
 
-	@Query(value = "insert into temperature(temperature, elder_id) value (:temperature, :elder_id)",
-	  nativeQuery = true)
-	void addTemp(String temperature, String elder_id);
+//	@Query(value = "insert into temperature(temperature, elder_id) value (:temperature, :elder_id)",
+//	  nativeQuery = true)
+//	void addTemp(String temperature, String elder_id);
 
 }

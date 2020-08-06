@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import hk.com.caretech.clive.iData.model.Elder;
 
-
-public interface ElderRepository extends JpaRepository<Elder, Integer> {
+@Repository
+public interface ElderRepository extends CrudRepository<Elder, Integer> {
 	
 	
 	//**Methods annotated with @Query only accept "String" type attribute**
@@ -26,9 +28,9 @@ public interface ElderRepository extends JpaRepository<Elder, Integer> {
 
 	
 	
-	@Query
-	(value = "insert into elder(name, bed_no) values (:name, :bed_no)", nativeQuery = true)
-	void addElder(String name,int bed_no);
+//	@Query
+//	(value = "insert into elder(name, bed_no) values (:name, :bed_no)", nativeQuery = true)
+//	void addElder(String name,int bed_no);
 	
 
 //	@Query(value = "insert into elder(name, bed_no) values (:name, :bed_no)",

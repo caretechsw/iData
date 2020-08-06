@@ -2,6 +2,7 @@ package hk.com.caretech.clive.iData.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -22,6 +23,7 @@ import com.mysql.cj.Session;
 
 import hk.com.caretech.clive.iData.model.Elder;
 import hk.com.caretech.clive.iData.repository.ElderRepository;
+import net.bytebuddy.asm.Advice.Return;
 
 @RestController
 public class ElderController {
@@ -29,11 +31,7 @@ public class ElderController {
 	@Autowired
     private ElderRepository elderRepository;
 	
-	EntityManager entityManager;
 
-//	EntityManager entityManager;
-
-	
 	Logger logger = LoggerFactory.getLogger("ElderController");
 	
 	
@@ -43,8 +41,9 @@ public class ElderController {
 	}
 	
 	@GetMapping("/elder")
-	public List<Elder> findAll(){
+	public Iterable<Elder> findAll(){
 		return elderRepository.findAll();
+	//	return elderRepository.findAll();
 		}
 	
 //	//Return HTML page
@@ -72,18 +71,7 @@ public class ElderController {
 		return elderRepository.getByBedNo(bed_no);
 	}
 	
-//	@PostMapping("/elder/add")
-//	public void addElder(@RequestParam String name,@RequestParam int bed_no){
-//		elderRepository.addElder(name, bed_no);
-//		entityManager.createNativeQuery("insert into elder(name, bed_no) values (:name, :bed_no)")
-//		.setParameter(1, elder.getName())
-//		.setParameter(2, elder.getBed_no()).executeUpdate();
-		/*URI path = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(elder.getId()).toUri();
-		
-		return ResponseEntity.created(path).build();*/
 
-	
 	//Product Json format object
 	@PostMapping("/elder/add")
 	public void addElderBody(@RequestBody Elder elder) {
@@ -96,55 +84,16 @@ public class ElderController {
 	elderRepository.save(elder);
 	}
 
-	
-	
-	
-//	@PostMapping("/addelder")
-//	public void addElder(@RequestParam String name,@RequestParam String bed_no){
-//		elderRepository.addElder(name, bed_no);
-////		entityManager.createNativeQuery("insert into elder(name, bed_no) values (:name, :bed_no)")
-////		.setParameter(1, elder.getName())
-////		.setParameter(2, elder.getBed_no()).executeUpdate();
-//		/*URI path = ServletUriComponentsBuilder.fromCurrentRequest()
-//				.path("/{id}").buildAndExpand(elder.getId()).toUri();
-//		
-//		return ResponseEntity.created(path).build();*/
-//	}
-	
-
-	
-	
-	@DeleteMapping("/elder/delete/{id}")
-	public void deleteElder(@PathVariable int id) {
-		elderRepository.deleteById(id);
+	@PutMapping("/elder/update")
+	public Elder updateUser(@RequestBody Elder elder){
+		if(elderRepository.findById(elder.getId()).isPresent()){
+			return elderRepository.save(elder);}
+		 else {throw new RuntimeException("Elder ID not found");
+	 }
 	}
 	
-//	 @PutMapping("/elder/update/{userId}")
-//	 public String updateUser(@PathVariable int userId, @RequestBody Elder elder){
-//	
-//	  
-//	  return "HTTP PUT was called";
-//	 }
-	
-	
-	//=====for reference===
-//	 @PutMapping("/employees/{id}")
-//	    Employee updateEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
-//	 
-//	        return repository.findById(id).map(employee -> {
-//	            employee.setFirstName(newEmployee.getFirstName());
-//	            employee.setLastName(newEmployee.getLastName());
-//	            employee.setEmail(newEmployee.getEmail());
-//	            return repository.save(employee);
-//	        }).orElseGet(() -> {
-//	            newEmployee.setId(id);
-//	            return repository.save(newEmployee);
-//	        });
-//	    }
-//	 
-//	    @DeleteMapping("/employees/{id}")
-//	    void deleteEmployee(@PathVariable Long id) {
-//	        repository.deleteById(id);
-//	    }
-
+	@DeleteMapping("/elder/delete/{id}")
+	 public void deleteById(@PathVariable int id) {
+		elderRepository.deleteById(id);
+		}
 }
