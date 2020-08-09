@@ -65,7 +65,7 @@ public class TemperatureController {
 	@PostMapping(path = "/temp/add",  consumes = {"application/x-www-form-urlencoded", 
 			MediaType.APPLICATION_JSON_VALUE},
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<Temperature> addTemp(@RequestParam("temperature") float temperature,
+	public ResponseEntity<Temperature> addTemp(@RequestParam("temperature") double temperature,
 			@RequestParam("elder_id") int elder_id, Temperature temp) {
 		
 		temp.setTemperature(temperature);

@@ -17,12 +17,12 @@ public class Temperature {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int temperature_id;
-	private float temperature;
+	private double temperature;
 	private int elder_ID;
 	private Timestamp timestamp;
 	
 	
-	public Temperature(int temperature_id, float temperature, int elder_ID, Timestamp timestamp) {
+	public Temperature(int temperature_id, double temperature, int elder_ID, Timestamp timestamp) {
 		super();
 		this.temperature_id = temperature_id;
 		this.temperature = temperature;
@@ -41,10 +41,10 @@ public class Temperature {
 //}
 	
 	
-	public float getTemperature() {
+	public double getTemperature() {
 		return temperature;
 	}
-	public void setTemperature(float temperature) {
+	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
 	public int getTemperatureID() {
