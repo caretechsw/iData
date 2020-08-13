@@ -65,28 +65,33 @@ public class TemperatureController {
 	@PostMapping(path = "/temp/add",  consumes = {"application/x-www-form-urlencoded", 
 			MediaType.APPLICATION_JSON_VALUE},
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<Temperature> addTemp(@RequestParam("temperature") double temperature,
-			@RequestParam("elder_id") int elder_id, Temperature temp) {
-		
+	public ResponseEntity<Temperature> addTemp(
+			@RequestParam("dev_timestamp") String dev_timestamp,
+			@RequestParam("elder_id") String elder_id,
+			@RequestParam("temperature") double temperature,
+			@RequestParam("timestamp") Timestamp timestamp,
+			Temperature temp
+			) {
+		temp.setDev_timestamp(dev_timestamp);
+		temp.setElder_ID(elder_id);
 		temp.setTemperature(temperature);
-		temp.setElderID(elder_id);
-		temp.setTimestamp(new Timestamp(System.currentTimeMillis()));
+		temp.setTimestamp(timestamp);
 		temperatureRepository.save(temp);
 	    return new ResponseEntity<Temperature>(temp, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/temp/update")
 	public Temperature update(@RequestBody Temperature temp){
-		if(temperatureRepository.findById(temp.getElderID()).isPresent()){
+		if(temperatureRepository.findById(temp.getElder_ID()).isPresent()){
 			return temperatureRepository.save(temp);}
 		 else {throw new RuntimeException("Elder ID not found");
 	 }
 	}
 	
 	
-	@DeleteMapping("/temp/delete/{tempid}")
-	 public void deleteById(@PathVariable int tempid) {
-	     temperatureRepository.deleteById(tempid);
-		 }
+//	@DeleteMapping("/temp/delete/{tempid}")
+//	 public void deleteById(@PathVariable String dev_timestamp) {
+//	     temperatureRepository.deleteByDev_timestamp(dev_timestamp);
+//		 }
 }
 

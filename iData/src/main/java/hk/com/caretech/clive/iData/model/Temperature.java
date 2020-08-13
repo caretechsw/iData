@@ -11,59 +11,56 @@ import javax.persistence.Id;
 @Entity
 public class Temperature {
 	
+
 	public Temperature() {
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int temperature_id;
+	private String dev_timestamp;
+	private String elder_ID;
 	private double temperature;
-	private int elder_ID;
 	private Timestamp timestamp;
 	
-	
-	public Temperature(int temperature_id, double temperature, int elder_ID, Timestamp timestamp) {
+	public Temperature(String dev_timestamp, String elder_ID, double temperature, Timestamp timestamp) {
 		super();
-		this.temperature_id = temperature_id;
-		this.temperature = temperature;
+		this.dev_timestamp = dev_timestamp;
 		this.elder_ID = elder_ID;
-		this.timestamp = timestamp;}
+		this.temperature = temperature;
+		this.timestamp = timestamp;
+	}
 	
-//	@ManyToOne
-//	@JoinColumn(name = "elderid")
-//	private Elder elder;
-//	
-//	public Elder getElder() {
-//		return elder;
-//	}
-//	public void setElder(Elder elder) {
-//		this.elder = elder;
-//}
-	
-	
+
+	public String getDev_timestamp() {
+		return dev_timestamp;
+	}
+
+	public void setDev_timestamp(String dev_timestamp) {
+		this.dev_timestamp = dev_timestamp;
+	}
+
+	public String getElder_ID() {
+		return elder_ID;
+	}
+
+	public void setElder_ID(String elder_ID) {
+		this.elder_ID = elder_ID;
+	}
+
 	public double getTemperature() {
 		return temperature;
 	}
+
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
-	public int getTemperatureID() {
-		return temperature_id;
-	}
-	public void setTemperatureID(int temperatureID) {
-		this.temperature_id = temperatureID;
-	}
+
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
+
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
-	public int getElderID() {
-		return elder_ID;
-	}
-	public void setElderID(int elderID) {
-		this.elder_ID = elderID;
-	}
-
+	
+	
 }

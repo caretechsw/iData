@@ -13,7 +13,7 @@ import hk.com.caretech.clive.iData.model.Elder;
 import hk.com.caretech.clive.iData.model.Temperature;
 
 @Repository
-public interface TemperatureRepository extends CrudRepository<Temperature, Integer> {
+public interface TemperatureRepository extends CrudRepository<Temperature, String> {
 	
 	//**Methods annotated with @Query only accept "String" type attribute**
 	
