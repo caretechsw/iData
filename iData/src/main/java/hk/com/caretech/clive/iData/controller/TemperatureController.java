@@ -58,8 +58,13 @@ public class TemperatureController {
 	
 	
 	@GetMapping("/temp/elder_id")
-	public List<Temperature> getByElderId(@RequestParam String elder_id) {
+	public List<Temperature> getByElderId(@RequestParam int elder_id) {
 		return temperatureRepository.getByElderId(elder_id);
+	}
+	
+	@GetMapping("/temp/dev_timestamp")
+	public List<Temperature> getByDev_timestamp(@RequestParam String dev_timestamp) {
+		return temperatureRepository.getByDev_timestamp(dev_timestamp);
 	}
 	
 	@PostMapping(path = "/temp/add",  consumes = {"application/x-www-form-urlencoded", 
@@ -67,22 +72,24 @@ public class TemperatureController {
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Temperature> addTemp(
 			@RequestParam("dev_timestamp") String dev_timestamp,
-			@RequestParam("elder_id") String elder_id,
+			@RequestParam("elder_id") int elder_id,
 			@RequestParam("temperature") double temperature,
 			@RequestParam("timestamp") Timestamp timestamp,
+			@RequestParam("device_id") String device_id,
 			Temperature temp
 			) {
 		temp.setDev_timestamp(dev_timestamp);
 		temp.setElder_ID(elder_id);
 		temp.setTemperature(temperature);
 		temp.setTimestamp(timestamp);
+		temp.setDevice_id(device_id);
 		temperatureRepository.save(temp);
 	    return new ResponseEntity<Temperature>(temp, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/temp/update")
 	public Temperature update(@RequestBody Temperature temp){
-		if(temperatureRepository.findById(temp.getElder_ID()).isPresent()){
+		if(temperatureRepository.findById(temp.getDev_timestamp()).isPresent()){
 			return temperatureRepository.save(temp);}
 		 else {throw new RuntimeException("Elder ID not found");
 	 }

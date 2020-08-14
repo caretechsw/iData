@@ -57,7 +57,7 @@ public class ElderController {
 //	}
 	
 	@GetMapping("/elder/id")
-	public List<Elder> getElderById(@RequestParam String id) {
+	public List<Elder> getElderById(@RequestParam int id) {
 		return elderRepository.getById(id);
 	}
 	
@@ -67,7 +67,7 @@ public class ElderController {
 	}
 	
 	@GetMapping("/elder/bed_no")
-	public List<Elder> getElderByBedNo(@RequestParam String bed_no) {
+	public List<Elder> getElderByBedNo(@RequestParam int bed_no) {
 		return elderRepository.getByBedNo(bed_no);
 	}
 	

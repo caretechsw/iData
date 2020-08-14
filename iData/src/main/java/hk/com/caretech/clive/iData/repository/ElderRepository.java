@@ -15,16 +15,15 @@ import hk.com.caretech.clive.iData.model.Elder;
 public interface ElderRepository extends CrudRepository<Elder, Integer> {
 	
 	
-	//**Methods annotated with @Query only accept "String" type attribute**
 	
 	@Query(value = "select * from Elder where elder.id = ?1" , nativeQuery = true)
-	List<Elder> getById(String id);
+	List<Elder> getById(int id);
 	
 	@Query(value = "select * from Elder where elder.name LIKE %?1%" , nativeQuery = true)
 	List<Elder> getByName(String name);
 	
 	@Query(value = "select * from Elder where elder.bed_no = ?1" , nativeQuery = true)
-	List<Elder> getByBedNo(String bed_no);
+	List<Elder> getByBedNo(int bed_no);
 
 	
 	

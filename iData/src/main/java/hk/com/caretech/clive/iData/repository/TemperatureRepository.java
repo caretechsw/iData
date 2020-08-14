@@ -14,12 +14,13 @@ import hk.com.caretech.clive.iData.model.Temperature;
 
 @Repository
 public interface TemperatureRepository extends CrudRepository<Temperature, String> {
-	
-	//**Methods annotated with @Query only accept "String" type attribute**
+
 	
 	@Query(value = "select * from Temperature where temperature.elder_id = ?1" , nativeQuery = true)
-	List<Temperature> getByElderId(String elder_id);
-
+	List<Temperature> getByElderId(int elder_id);
+	
+	@Query(value = "select * from Temperature where temperature.dev_timestamp = ?1" , nativeQuery = true)
+	List<Temperature> getByDev_timestamp(String dev_timestamp);
 	
 
 //	@Query(value = "insert into temperature(temperature, elder_id) value (:temperature, :elder_id)",
