@@ -45,7 +45,7 @@ public class Temperature {
 			return elder_id;
 		}
 
-		public void setElder_ID(int elder_id) {
+		public void setElder_id(int elder_id) {
 			this.elder_id = elder_id;
 		}
 

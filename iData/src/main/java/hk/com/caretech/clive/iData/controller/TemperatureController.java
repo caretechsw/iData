@@ -79,7 +79,7 @@ public class TemperatureController {
 			Temperature temp
 			) {
 		temp.setDev_timestamp(dev_timestamp);
-		temp.setElder_ID(elder_id);
+		temp.setElder_id(elder_id);
 		temp.setTemperature(temperature);
 		temp.setTimestamp(timestamp);
 		temp.setDevice_id(device_id);
