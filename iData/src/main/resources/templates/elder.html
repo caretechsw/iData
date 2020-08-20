@@ -7,19 +7,33 @@
 </head>
 <body>
 
+<a href="/temp_web">量溫記錄</a>
+ <div align="center">
+ 
+ 
+<table border="1" cellpadding="5">
+<h2>院友列表</h2>
+<a href="/elder_web/add">新增</a>
 
-<table>
-  <tr>
+ <tr>
   <th>ID</th>
-  <th>Name</th>
-  <th>Bed No</th>
+  <th>名稱</th>
+  <th>床號</th>
+  <th></th>
+  
   </tr>
     <tr th:each="elder : ${elders}">
       <td th:text="${elder.getId()}">ID</td>
-      <td th:text="${elder.getName()}">Name</td>
-      <td th:text="${elder.getBed_no()}">Bed no</td>
+      <td th:text="${elder.getName()}">名稱</td>
+      <td th:text="${elder.getBed_no()}">床號</td>
+      <td>
+      <a th:href="@{/elder_web/update(id=${elder.id})}">編輯</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+      <a th:href="@{/elder_web/delete(id=${elder.id})}">刪除</a>                     
+      </td>
     </tr>
 </table>
+</div>
 
 </body>
 </html>

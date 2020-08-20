@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en' xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Update Elder</title>
+
+</head>
+<body>
+  
+    <div align="center">
+    
+    <caption><h2>新增院友</h2></caption>
+  
+    <form action="#" th:action="@{/elder_web/add}" th:object="${elder}" method="POST">
+        <table border="1">        
+            <tr>
+                <th>名稱: </th>
+                <td>
+                  <input type="text" name="name" size="20"/>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>床號: </th>
+                <td>
+                    <input type="text" name="bed_no" size="20"/>                  
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">新增</button>
+                </td>
+            </tr>
+            
+        </table>        
+        </form>
+    </div>   
+</body>
+</html>

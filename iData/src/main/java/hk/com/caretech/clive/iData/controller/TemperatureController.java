@@ -2,30 +2,38 @@ package hk.com.caretech.clive.iData.controller;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.hibernate.SessionFactory;
+import org.hibernate.internal.util.streams.StingArrayCollector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import hk.com.caretech.clive.iData.model.Elder;
 import hk.com.caretech.clive.iData.model.Temperature;
 import hk.com.caretech.clive.iData.repository.TemperatureRepository;
 
-@RestController
+@Controller
 public class TemperatureController {
 
 	
@@ -38,6 +46,30 @@ public class TemperatureController {
 	//public EntityManager em;
 	
 	Logger logger = LoggerFactory.getLogger("TemperatureController");
+	
+	@GetMapping("/temp_web")
+	public String findAll_web(Model model){
+		Iterable<Temperature> tempList = temperatureRepository.findAll();
+		model.addAttribute("temps" , tempList);
+		return "temperature";
+		}
+	
+	
+	@GetMapping("/temp_web/elderid")
+	public ModelAndView getTempByElderId_web(@RequestParam int elder_id) {
+		Iterable<Temperature> tempList = temperatureRepository.getByElderId(elder_id);
+		return new ModelAndView("temperature", "temps" , tempList);
+	}
+	
+	
+	@GetMapping("/temp_web/delete")
+	public String deleteTemp_web(@RequestParam("dev_timestamp") String dev_timestamp){
+	temperatureRepository.deleteById(dev_timestamp);	
+    return "redirect:/temp_web";
+    }
+	
+	
+	//*****************************************************//
 	
 	
 //	//Return HTML page
@@ -52,18 +84,21 @@ public class TemperatureController {
 	
 
 	@GetMapping("/temp")
+	@ResponseBody
 	public Iterable<Temperature> findAll(){
 		return temperatureRepository.findAll();	
 	}
 	
 	
 	@GetMapping("/temp/elder_id")
+	@ResponseBody
 	public List<Temperature> getByElderId(@RequestParam int elder_id) {
 		return temperatureRepository.getByElderId(elder_id);
 	}
 	
 	@GetMapping("/temp/dev_timestamp")
-	public List<Temperature> getByDev_timestamp(@RequestParam String dev_timestamp) {
+	@ResponseBody
+	public Temperature getByDev_timestamp(@RequestParam String dev_timestamp) {
 		return temperatureRepository.getByDev_timestamp(dev_timestamp);
 	}
 	

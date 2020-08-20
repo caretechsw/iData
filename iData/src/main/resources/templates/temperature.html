@@ -2,24 +2,33 @@
 <html lang='en' xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Temperature</title>
+<title>量溫記錄</title>
 </head>
 <body>
-
-<table>
+<a href="/elder_web">院友列表</a>
+ <div align="center">
+<table border="1" cellpadding="5">
+<h2>量溫記錄</h2>
   <tr>
-  <th>Temperature ID</th>
-  <th>Temperature</th>
-  <th>Elder ID</th>
-  <th>Time</th>
+  <th>量溫裝置_時間</th>
+  <th>院友ID</th>
+  <th>溫度</th>
+  <th>時間</th>
+  <th>量溫裝置</th>
+  <th></th>
   </tr>
     <tr th:each="temp : ${temps}">
-      <td th:text="${temp.getTemperatureID()}">Temperature ID</td>
-      <td th:text="${temp.getTemperature()}">Temperature</td>
-      <td th:text="${temp.getElderID()}">Elder ID</td>
-      <td th:text="${temp.getTimestamp()}">Time</td>
+      <td th:text="${temp.getDev_timestamp()}">量溫裝置_時間</td>
+      <td th:text="${temp.getElder_id()}">院友ID</td>
+      <td th:text="${temp.getTemperature()}">溫度</td>
+      <td th:text="${temp.getTimestamp()}">時間</td>
+      <td th:text="${temp.getDevice_id()}">量溫裝置</td>
+      <td>
+      <a th:href="@{/temp_web/delete(dev_timestamp=${temp.dev_timestamp})}">刪除</a>                     
+      </td>
     </tr>
 </table>
+</div>
 
 </body>
 </html>
