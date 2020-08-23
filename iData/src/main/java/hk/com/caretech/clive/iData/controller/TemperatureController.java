@@ -40,10 +40,6 @@ public class TemperatureController {
 	@Autowired
     private TemperatureRepository temperatureRepository;
 	
-	//private static SessionFactory sessionFactory = null;
-	
-	//@PersistenceContext
-	//public EntityManager em;
 	
 	Logger logger = LoggerFactory.getLogger("TemperatureController");
 	

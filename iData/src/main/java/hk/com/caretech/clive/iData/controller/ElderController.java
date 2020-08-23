@@ -1,6 +1,7 @@
 package hk.com.caretech.clive.iData.controller;
 
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,13 +44,11 @@ public class ElderController {
 	
 	@Autowired
     private ElderRepository elderRepository;
-	
-	
 
 	Logger logger = LoggerFactory.getLogger("ElderController");
 	
-	
 	@GetMapping("/")
+	@ResponseBody
 	public String testConnect(){
 		return "connected";	
 	}
@@ -60,13 +59,6 @@ public class ElderController {
 		model.addAttribute("elders" , elderList);
 		return "elder";
 		}
-	
-	
-//	@GetMapping("/elder_web")
-//	public ModelAndView findAll_web(){
-//		Iterable<Elder> elderList = elderRepository.findAll();
-//		return new ModelAndView("elder", "elders" , elderList);
-//		}
 	
 	@GetMapping("/elder_web/id")
 	public ModelAndView getElderById_web(@RequestParam int id) {
@@ -98,10 +90,15 @@ public class ElderController {
 		if (bindingResult.hasErrors()) {
 	            return "redirect:/elder_web/add";
 	        }
+		try {
 		 elderRepository.save(elder);
 		 Iterable<Elder> elderList = elderRepository.findAll();
 		 model.addAttribute("elders", elderList);
 		 return "redirect:/elder_web";
+		} 
+		catch (Exception e) {
+			return "oper_exception";
+		}
 	}
 	
 	@GetMapping("/elder_web/update")
@@ -115,12 +112,18 @@ public class ElderController {
 	
 	@PostMapping("/elder_web/update")
 	public String updateElder_web(@ModelAttribute("elder") @RequestBody Elder elder){
+		
+		try {
 		if(elderRepository.findById(elder.getId()).isPresent()){
 			 elderRepository.save(elder);
 			 return "redirect:/elder_web";}
 		 else {throw new RuntimeException("Elder ID not found");
+		 }
+		 	} catch (Exception e) {
+		 		return "oper_exception";
+		}
 	 }
-	}
+
 	
 	
 	@GetMapping("/elder_web/delete")

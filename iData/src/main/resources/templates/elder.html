@@ -2,12 +2,13 @@
 <html lang='en' xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Elder List</title>
+<title>院友列表</title>
 
 </head>
 <body>
 
 <a href="/temp_web">量溫記錄</a>
+<a href="/tempab_web">量溫記錄(沒有院友記錄)</a>
  <div align="center">
  
  
@@ -17,14 +18,14 @@
 
  <tr>
   <th>ID</th>
-  <th>名稱</th>
+  <th>姓名</th>
   <th>床號</th>
   <th></th>
   
   </tr>
     <tr th:each="elder : ${elders}">
       <td th:text="${elder.getId()}">ID</td>
-      <td th:text="${elder.getName()}">名稱</td>
+      <td th:text="${elder.getName()}">姓名</td>
       <td th:text="${elder.getBed_no()}">床號</td>
       <td>
       <a th:href="@{/elder_web/update(id=${elder.id})}">編輯</a>
