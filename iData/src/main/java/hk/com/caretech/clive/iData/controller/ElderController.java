@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mysql.cj.Session;
 
+import hk.com.caretech.clive.iData.Utils;
 import hk.com.caretech.clive.iData.model.Elder;
 import hk.com.caretech.clive.iData.repository.ElderRepository;
 import javassist.expr.NewArray;
@@ -41,6 +42,7 @@ import net.bytebuddy.asm.Advice.Return;
 
 @Controller
 public class ElderController {
+
 	
 	@Autowired
     private ElderRepository elderRepository;
@@ -91,6 +93,7 @@ public class ElderController {
 	            return "redirect:/elder_web/add";
 	        }
 		try {
+			elder.setStatus_delete(Utils.nonDeleted);
 		 elderRepository.save(elder);
 		 Iterable<Elder> elderList = elderRepository.findAll();
 		 model.addAttribute("elders", elderList);
@@ -115,6 +118,7 @@ public class ElderController {
 		
 		try {
 		if(elderRepository.findById(elder.getId()).isPresent()){
+			elder.setStatus_delete(Utils.nonDeleted);
 			 elderRepository.save(elder);
 			 return "redirect:/elder_web";}
 		 else {throw new RuntimeException("Elder ID not found");
@@ -124,13 +128,14 @@ public class ElderController {
 		}
 	 }
 
-	
-	
 	@GetMapping("/elder_web/delete")
 	public String deleteElder_web(@RequestParam("id") int id) {
-    Elder user = elderRepository.findById(id)
+    Elder elder = elderRepository.findById(id)
       .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-    elderRepository.delete(user);
+    logger.info(TAG, "access delete");
+    elder.setBed_no(Utils.deleted);
+    elder.setStatus_delete(Utils.deleted);
+    elderRepository.save(elder);
     return "redirect:/elder_web";
 }
 	
@@ -197,4 +202,6 @@ public class ElderController {
 	 public void deleteById(@PathVariable int id) {
 		elderRepository.deleteById(id);
 		}
+	
+	public static String TAG = ElderController.class.getName();
 }

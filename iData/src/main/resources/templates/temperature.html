@@ -18,7 +18,7 @@
   <th>量溫裝置</th>
   <th></th>
   </tr>
-    <tr th:each="temp : ${temps}">
+    <tr th:each="temp : ${temps}" th:unless="${temp.getStatus_delete()== 0}">
       <td th:text="${temp.getDev_timestamp()}">量溫裝置_時間</td>
       <td th:text="${temp.getElder_id()}">院友ID</td>
       <td th:text="${temp.getTemperature()}">溫度</td>

@@ -29,8 +29,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import hk.com.caretech.clive.iData.Utils;
 import hk.com.caretech.clive.iData.model.Elder;
 import hk.com.caretech.clive.iData.model.Temperature;
+import hk.com.caretech.clive.iData.model.Temperature_abnormal;
 import hk.com.caretech.clive.iData.repository.TemperatureRepository;
 
 @Controller
@@ -60,7 +62,9 @@ public class TemperatureController {
 	
 	@GetMapping("/temp_web/delete")
 	public String deleteTemp_web(@RequestParam("dev_timestamp") String dev_timestamp){
-	temperatureRepository.deleteById(dev_timestamp);	
+		Temperature temp = new Temperature();
+		temp.setStatus_delete(Utils.deleted);
+	    temperatureRepository.save(temp);	
     return "redirect:/temp_web";
     }
 	
@@ -114,6 +118,7 @@ public class TemperatureController {
 		temp.setTemperature(temperature);
 		temp.setTimestamp(timestamp);
 		temp.setDevice_id(device_id);
+		temp.setStatus_delete(Utils.nonDeleted);
 		temperatureRepository.save(temp);
 	    return new ResponseEntity<Temperature>(temp, HttpStatus.CREATED);
 	}
@@ -121,6 +126,7 @@ public class TemperatureController {
 	@PutMapping("/temp/update")
 	public Temperature update(@RequestBody Temperature temp){
 		if(temperatureRepository.findById(temp.getDev_timestamp()).isPresent()){
+			temp.setStatus_delete(Utils.nonDeleted);
 			return temperatureRepository.save(temp);}
 		 else {throw new RuntimeException("Elder ID not found");
 	 }
@@ -131,5 +137,7 @@ public class TemperatureController {
 //	 public void deleteById(@PathVariable String dev_timestamp) {
 //	     temperatureRepository.deleteByDev_timestamp(dev_timestamp);
 //		 }
+	
+	public static String TAG = TemperatureController.class.getName();
 }
 
