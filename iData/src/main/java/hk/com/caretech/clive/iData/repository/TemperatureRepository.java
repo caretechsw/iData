@@ -20,7 +20,9 @@ public interface TemperatureRepository extends CrudRepository<Temperature, Strin
 	List<Temperature> getByElderId(int elder_id);
 	
 	@Query(value = "select * from Temperature where temperature.dev_timestamp = ?1" , nativeQuery = true)
-	List<Temperature> getByDev_timestamp(String dev_timestamp);
+	Temperature getByDev_timestamp(String dev_timestamp);
+	
+
 	
 
 //	@Query(value = "insert into temperature(temperature, elder_id) value (:temperature, :elder_id)",

@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import hk.com.caretech.clive.iData.model.Temperature;
+
 @SpringBootApplication
 public class IDataApplication {
 
@@ -24,5 +26,4 @@ public class IDataApplication {
 //
 //		};
 //	}
-
 }

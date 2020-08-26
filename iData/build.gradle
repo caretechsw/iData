@@ -35,15 +35,12 @@ compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
 compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.1.RELEASE'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
-//compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.3.1.RELEASE'
+compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.3.1.RELEASE'
 // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
 compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '6.0.0.Alpha5', ext: 'pom'
-<<<<<<< HEAD
-=======
+
 // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
 compile group: 'org.hibernate.orm', name: 'hibernate-core', version: '6.0.0.Alpha5'
-
->>>>>>> refs/remotes/origin/brand1
 
 
 	// https://mvnrepository.com/artifact/com.h2database/h2

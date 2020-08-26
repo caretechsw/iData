@@ -24,6 +24,7 @@ public interface ElderRepository extends CrudRepository<Elder, Integer> {
 	
 	@Query(value = "select * from Elder where elder.bed_no = ?1" , nativeQuery = true)
 	List<Elder> getByBedNo(int bed_no);
+	
 
 	
 	

@@ -20,7 +20,7 @@ public interface Temperature_abnormalRepository extends CrudRepository<Temperatu
 	List<Temperature_abnormal> getByElderId(int elder_id);
 	
 	@Query(value = "select * from temperature_abnormal where ev_timestamp = ?1" , nativeQuery = true)
-	List<Temperature_abnormal> getByDev_timestamp(String dev_timestamp);
+	Temperature_abnormal getByDev_timestamp(String dev_timestamp);
 	
 
 //	@Query(value = "insert into temperature(temperature, elder_id) value (:temperature, :elder_id)",

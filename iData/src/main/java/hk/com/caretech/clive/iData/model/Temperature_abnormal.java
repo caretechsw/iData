@@ -11,25 +11,28 @@ public class Temperature_abnormal {
 	@Id
 	private String dev_timestamp;
 	private int elder_id;
-	private double temperature;
+	private float temperature;
 	private Timestamp timestamp;
 	private String device_id;
-	
+	private int status_delete;
 	
 	public Temperature_abnormal() {
 		super();
 	}
 
-
-	public Temperature_abnormal(String dev_timestamp, int elder_id, double temperature, Timestamp timestamp,
-			String device_id) {
+	public Temperature_abnormal(String dev_timestamp, int elder_id, float temperature, Timestamp timestamp,
+			String device_id, int status_delete) {
 		super();
 		this.dev_timestamp = dev_timestamp;
 		this.elder_id = elder_id;
 		this.temperature = temperature;
 		this.timestamp = timestamp;
 		this.device_id = device_id;
+		this.status_delete = status_delete;
 	}
+
+
+
 
 
 	public String getDev_timestamp() {
@@ -52,12 +55,12 @@ public class Temperature_abnormal {
 	}
 
 
-	public double getTemperature() {
+	public float getTemperature() {
 		return temperature;
 	}
 
 
-	public void setTemperature(double temperature) {
+	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
 
@@ -80,8 +83,17 @@ public class Temperature_abnormal {
 	public void setDevice_id(String device_id) {
 		this.device_id = device_id;
 	}
+
+	public int getStatus_delete() {
+		return status_delete;
+	}
+
+	public void setStatus_delete(int status_delete) {
+		this.status_delete = status_delete;
+	}
 	
 	
+	public static String TAG = Temperature_abnormal.class.getName();
 	
 	
 
