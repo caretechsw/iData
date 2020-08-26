@@ -15,7 +15,7 @@ public class Temperature {
 	@Id
 	private String dev_timestamp;
 	private int elder_id;
-	private double temperature;
+	private float temperature;
 	private Timestamp timestamp;
 	private String device_id;
 	private int status_delete;
@@ -26,7 +26,7 @@ public class Temperature {
 
 
 
-		public Temperature(String dev_timestamp, int elder_id, double temperature, Timestamp timestamp,
+		public Temperature(String dev_timestamp, int elder_id, float temperature, Timestamp timestamp,
 				String device_id, int status_delete) {
 			super();
 			this.dev_timestamp = dev_timestamp;
@@ -55,11 +55,11 @@ public class Temperature {
 			this.elder_id = elder_id;
 		}
 
-		public double getTemperature() {
+		public float getTemperature() {
 			return temperature;
 		}
 
-		public void setTemperature(double temperature) {
+		public void setTemperature(float temperature) {
 			this.temperature = temperature;
 		}
 

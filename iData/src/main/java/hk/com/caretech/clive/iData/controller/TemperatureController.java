@@ -37,7 +37,6 @@ import hk.com.caretech.clive.iData.repository.TemperatureRepository;
 
 @Controller
 public class TemperatureController {
-
 	
 	@Autowired
     private TemperatureRepository temperatureRepository;
@@ -59,28 +58,18 @@ public class TemperatureController {
 		return new ModelAndView("temperature", "temps" , tempList);
 	}
 	
-	
 	@GetMapping("/temp_web/delete")
 	public String deleteTemp_web(@RequestParam("dev_timestamp") String dev_timestamp){
-		Temperature temp = new Temperature();
+		Temperature temp = temperatureRepository.findById(dev_timestamp)
+			      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + dev_timestamp));
 		temp.setStatus_delete(Utils.deleted);
 	    temperatureRepository.save(temp);	
     return "redirect:/temp_web";
     }
 	
 	
-	//*****************************************************//
+	//********************************************************//
 	
-	
-//	//Return HTML page
-//	@RequestMapping("/temp")
-//	public String findAll(Model model){
-//		//ModelAndView mav = new ModelAndView("elder");
-//		List<Temperature> tempList = temperatureRepository.findAll();
-//		//mav.addObject("elders", elderList);
-//		model.addAttribute("temps", tempList);
-//		return "temperature";
-//	}
 	
 
 	@GetMapping("/temp")
@@ -108,7 +97,7 @@ public class TemperatureController {
 	public ResponseEntity<Temperature> addTemp(
 			@RequestParam("dev_timestamp") String dev_timestamp,
 			@RequestParam("elder_id") int elder_id,
-			@RequestParam("temperature") double temperature,
+			@RequestParam("temperature") float temperature,
 			@RequestParam("timestamp") Timestamp timestamp,
 			@RequestParam("device_id") String device_id,
 			Temperature temp
@@ -123,20 +112,15 @@ public class TemperatureController {
 	    return new ResponseEntity<Temperature>(temp, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/temp/update")
-	public Temperature update(@RequestBody Temperature temp){
-		if(temperatureRepository.findById(temp.getDev_timestamp()).isPresent()){
-			temp.setStatus_delete(Utils.nonDeleted);
-			return temperatureRepository.save(temp);}
-		 else {throw new RuntimeException("Elder ID not found");
-	 }
-	}
-	
-	
-//	@DeleteMapping("/temp/delete/{tempid}")
-//	 public void deleteById(@PathVariable String dev_timestamp) {
-//	     temperatureRepository.deleteByDev_timestamp(dev_timestamp);
-//		 }
+// update should not be used possibly
+//	@PutMapping("/temp/update")
+//	public Temperature update(@RequestBody Temperature temp){
+//		if(temperatureRepository.findById(temp.getDev_timestamp()).isPresent()){
+//			temp.setStatus_delete(Utils.nonDeleted);
+//			return temperatureRepository.save(temp);}
+//		 else {throw new RuntimeException("Elder ID not found");
+//	 }
+//	}
 	
 	public static String TAG = TemperatureController.class.getName();
 }

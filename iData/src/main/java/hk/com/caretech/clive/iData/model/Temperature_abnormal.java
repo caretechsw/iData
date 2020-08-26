@@ -11,7 +11,7 @@ public class Temperature_abnormal {
 	@Id
 	private String dev_timestamp;
 	private int elder_id;
-	private double temperature;
+	private float temperature;
 	private Timestamp timestamp;
 	private String device_id;
 	private int status_delete;
@@ -20,7 +20,7 @@ public class Temperature_abnormal {
 		super();
 	}
 
-	public Temperature_abnormal(String dev_timestamp, int elder_id, double temperature, Timestamp timestamp,
+	public Temperature_abnormal(String dev_timestamp, int elder_id, float temperature, Timestamp timestamp,
 			String device_id, int status_delete) {
 		super();
 		this.dev_timestamp = dev_timestamp;
@@ -55,12 +55,12 @@ public class Temperature_abnormal {
 	}
 
 
-	public double getTemperature() {
+	public float getTemperature() {
 		return temperature;
 	}
 
 
-	public void setTemperature(double temperature) {
+	public void setTemperature(float temperature) {
 		this.temperature = temperature;
 	}
 

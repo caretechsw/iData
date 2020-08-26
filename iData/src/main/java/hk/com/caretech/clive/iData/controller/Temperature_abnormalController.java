@@ -60,8 +60,8 @@ public class Temperature_abnormalController {
 	
 	@GetMapping("/tempab_web/delete")
 	public String deleteTempab_web(@RequestParam("dev_timestamp") String dev_timestamp){
-		
-		Temperature_abnormal tempab = temperature_abRepository.getByDev_timestamp(dev_timestamp);
+		Temperature_abnormal tempab = temperature_abRepository.findById(dev_timestamp)
+			      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + dev_timestamp));
 		tempab.setStatus_delete(Utils.deleted);
 	    temperature_abRepository.save(tempab);
     return "redirect:/tempab_web";
@@ -95,7 +95,7 @@ public class Temperature_abnormalController {
 	public ResponseEntity<Temperature_abnormal> addTempab(
 			@RequestParam("dev_timestamp") String dev_timestamp,
 			@RequestParam("elder_id") int elder_id,
-			@RequestParam("temperature") double temperature,
+			@RequestParam("temperature") float temperature,
 			@RequestParam("timestamp") Timestamp timestamp,
 			@RequestParam("device_id") String device_id,
 			Temperature_abnormal tempab
@@ -110,20 +110,16 @@ public class Temperature_abnormalController {
 	    return new ResponseEntity<Temperature_abnormal>(tempab, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/tempab/update")
-	public Temperature_abnormal update(@RequestBody Temperature_abnormal tempab){
-		if(temperature_abRepository.findById(tempab.getDev_timestamp()).isPresent()){
-			tempab.setStatus_delete(Utils.nonDeleted);
-			return temperature_abRepository.save(tempab);}
-		 else {throw new RuntimeException("Elder ID not found");
-	 }
-	}
+	//update should not be used possibly
+//	@PutMapping("/tempab/update")
+//	public Temperature_abnormal update(@RequestBody Temperature_abnormal tempab){
+//		if(temperature_abRepository.findById(tempab.getDev_timestamp()).isPresent()){
+//			tempab.setStatus_delete(Utils.nonDeleted);
+//			return temperature_abRepository.save(tempab);}
+//		 else {throw new RuntimeException("Elder ID not found");
+//	 }
+//	}
 	
-	
-//	@DeleteMapping("/temp/delete/{tempid}")
-//	 public void deleteById(@PathVariable String dev_timestamp) {
-//	     temperatureRepository.deleteByDev_timestamp(dev_timestamp);
-//		 }
 	
 	public static String TAG = Temperature_abnormalController.class.getName();
 }

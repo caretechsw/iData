@@ -21,7 +21,7 @@ public class Elder {
 	
 		public Elder() {
 		super();
-	}
+		}
 
 		public Elder(int id, String name, int bed_no, int status_delete) {
 			super();
