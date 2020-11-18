@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang='en' xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
 <title>更新院友</title>
+ <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link th:href="@{/css/w3.css}" rel="stylesheet">
+  <link th:href="@{/css/nav.css}" rel="stylesheet">
+      <link th:href="@{/css/common_style.css}" rel="stylesheet">
+  <script type="text/javascript" th:src="@{/js/fontawesome.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+ <style>
+ @media only screen and (max-width: 600px) {
+	  /* For tablets: */
+	.sidebar {display:block;}
+	.myTopnav {display:none;}
+  .sidebar a {font-size: 18px;}
+  .w3-main { margin-left:0px;}
+}
 
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+.sidebar {display:none;}
+.myTopnav {display:block;}
+ .sidebar a {font-size: 18px;}
+  .w3-main {margin-left:200px;}
+}
+</style>
 </head>
 <body>
   
-    <div align="center">
-    
+  
+    <div class="w3-container">
+<div class="w3-responsive">
+     <h2>更新院友</h2>   
     <form  action="#" th:action="@{/elder_web/update}" th:object="${elder}" method="post">
-        <table border="1">  
-        <caption><h2>更新院友</h2></caption>      
+       <table class="w3-table-all">
+          
          <tr>
                <th>ID: </th>
                 <td>
@@ -40,8 +64,10 @@
                     <input type="submit" value="Save" />
                 </td>
             </tr>
-        </table>
+                
+        </table>        
         </form>
+    </div>   
     </div>   
 </body>
 </html>

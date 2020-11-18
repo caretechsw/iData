@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en' xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>新增院友</title>
+ <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link th:href="@{/css/w3.css}" rel="stylesheet">
+  <link th:href="@{/css/nav.css}" rel="stylesheet">
+      <link th:href="@{/css/common_style.css}" rel="stylesheet">
+  <script type="text/javascript" th:src="@{/js/fontawesome.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+ <style>
+ @media only screen and (max-width: 600px) {
+	  /* For tablets: */
+	.sidebar {display:block;}
+	.myTopnav {display:none;}
+  .sidebar a {font-size: 18px;}
+  .w3-main { margin-left:0px;}
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+.sidebar {display:none;}
+.myTopnav {display:block;}
+ .sidebar a {font-size: 18px;}
+  .w3-main {margin-left:200px;}
+}
+</style>
+</head>
+<body>
+  
+
+ 
+    
+    <div class="w3-container">
+<div class="w3-responsive">
+   <h2>新增院友</h2>
+  
+    <form action="#" th:action="@{/elder_web/add}" th:object="${elder}" method="POST">
+        <table class="w3-table-all">        
+            <tr>
+                <th>姓名: </th>
+                <td>
+                  <input type="text" name="name" size="20"/>
+                </td>
+            </tr>
+            
+            <tr>
+                <th>床號: </th>
+                <td>
+                    <input type="text" name="bed_no" size="20"/>                  
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">新增</button>
+                </td>
+            </tr>
+            
+        </table>        
+        </form>
+    </div>   
+    </div>   
+</body>
+</html>
