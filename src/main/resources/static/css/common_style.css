@@ -1,0 +1,20 @@
+body {
+  background-color: #E6E6FA;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+ @media only screen and (max-width: 767px) {
+	  /* For tablets: */
+	.sidebar {display:block;}
+	.myTopnav {display:none;}
+  .sidebar a {font-size: 18px;}
+  .w3-main { margin-left:0px;}
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+.sidebar {display:none;}
+.myTopnav {display:block;}
+ .sidebar a {font-size: 18px;}
+  .w3-main {margin-left:200px;}
+}

@@ -1,0 +1,28 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<div th:fragment="navbar" id="mySidebar" class="sidebar">
+<nav class="w3-blue-grey w3-large" style=" box-shadow: 0 50px 8px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2); z-index: 99" id="mySidebar1">
+  <a href="/" class="w3-bar-item w3-btn w3-blue-grey">CSV轉換器</a>
+ <a href="/agreement" class="w3-bar-item w3-btn w3-blue-grey">Agreement轉換器</a>
+ <a href="/receipt" class="w3-bar-item w3-btn w3-blue-grey">Receipt轉換器</a>
+  </nav>
+</div>
+
+
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("sidepanel");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
