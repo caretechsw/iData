@@ -50,7 +50,7 @@ ALTER TABLE `temperature_abnormal`
   ADD PRIMARY KEY (`dev_timestamp`);
 COMMIT;
 
-#### 3(optional) add testing elder
+#### 3(optional). add testing elder
 INSERT INTO `elder` (`id`, `name`, `bed_no`, `status_delete`) VALUES
 (101, 'elder', 0, 1);
 
