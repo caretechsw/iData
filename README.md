@@ -6,8 +6,8 @@ This application is using MYSQL as database and using Tomcat as HTTP web server.
 ## DataBase
 The database is using MYSQL and the tables initializer file(idata.sql) is stored within the directory of the application source code file.
 
-### 1. create schema 'iData'
-### 2. create 3 tables from MYSQL initialisation query below
+#### 1. create schema 'iData'
+#### 2. create 3 tables from MYSQL initialisation query below
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,7 @@ ALTER TABLE `temperature_abnormal`
   ADD PRIMARY KEY (`dev_timestamp`);
 COMMIT;
 
-### 3(optional) add testing elder
+#### 3(optional) add testing elder
 INSERT INTO `elder` (`id`, `name`, `bed_no`, `status_delete`) VALUES
 (101, 'elder', 0, 1);
 
