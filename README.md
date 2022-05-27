@@ -6,8 +6,8 @@ This application is using MYSQL as database and using Tomcat as HTTP web server.
 ## DataBase
 The database is using MYSQL. For initializing the database, you can follow below query.
 
-#### 1. create schema 'iData'
-#### 2. create 3 tables from MYSQL initialisation query below
+#### 1. create schema 'iData'.
+#### 2. create 3 tables from MYSQL initialisation query below:
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
