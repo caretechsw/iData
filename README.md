@@ -4,7 +4,7 @@ iData is a web application based on Spring boot framework.
 This application is using MYSQL as database and using Tomcat as HTTP web server.
 
 ## DataBase
-The database is using MYSQL and the tables initializer file(idata.sql) is stored within the directory of the application source code file.
+The database is using MYSQL. For initializing the database, you can follow below query.
 
 #### 1. create schema 'iData'
 #### 2. create 3 tables from MYSQL initialisation query below
